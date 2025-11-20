@@ -24,44 +24,117 @@ public class Algebra {
 	}  
 
 	// Returns x1 + x2
-	public static int plus(int x1, int x2) {
+	public static int plus (int x1, int x2) {
 		// Replace the following statement with your code
-		return 0;
-	}
+		if ( x2 > 0) {
+			while (x2 !=0) {
+				x1++;
+				x2--;
+			}
+		}else{
+			while (x2 != 0) {
+				x1--;
+				x2++;
+			}
+			}
+			return x1;	
+		}
+			
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
 		// Replace the following statement with your code
-		return 0;
+		if ( x2 > 0) {
+			while (x2 !=0) {
+				x1--;
+				x2--;
+			}
+		}else{
+			while (x2 != 0) {
+				x1++;
+				x2++;
+			}
+		}return x1;	
 	}
+	
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
 		// Replace the following statement with your code
-		return 0;
-	}
+		int result=0;
+		boolean negative = false;
+		if (x2<0) {
+			negative= true;
+			x2 = minus(0, x2);
+		}
+		while (x2>0) {
+			result=plus(result, x1);
+			x2--;
+		}
+		if (negative) {
+			result=minus(0, result);
+		}
+			return result;
+		}
+	
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
 		// Replace the following statement with your code
-		return 0;
+		int result = 1;
+		while (n>0) {
+			result = times(result, x);
+			n--;
+		}
+		return result;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
 		// Replace the following statement with your code
-		return 0;
+		if (x2==0) {
+		throw new IllegalArgumentException("Division by zero");	
+		}
+
+	boolean negative= false;
+
+	if (x1<0){
+		negative= !negative;
+		x1 = minus(0,x1);
+	}
+	if (x2<0){
+    negative = !negative;
+	x2 = minus(0, x2);
+	}
+	int count = 0;
+	while (x1 >= x2){
+		x1 = minus(x1, x2);
+		count++;
+	}
+	if (negative){
+		count = minus(0, count);
+	}
+	return count;
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
 		// Replace the following statement with your code
-		return 0;
+		int d = div(x1, x2);
+		int prod = times(d, x2);
+		return minus(x1, prod);
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
 		// Replace the following statement with your code
-		return 0;
+		if (x<0) {
+			throw new IllegalArgumentException ("Negative argument to sqrt");
+		}
+		int K=0;
+		while (times(K, K)<= x) {
+			K++;
+		}
+		return K-1;
 	}	  	  
 }
